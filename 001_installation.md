@@ -112,3 +112,7 @@ If it works, you should get a response like this
 If the Weaver has launched without displaying an error, it is ready for use.
 The Swagger documentation should therefore be available under this link:
 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
+## Accessibility
+- By default, Neo4j web interface will be accessible via http://localhost:7474
+- By default, Weaver REST API will be accessible via http://localhost:8080
