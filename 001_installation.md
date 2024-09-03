@@ -62,5 +62,38 @@ Then, proceed to the "Test of the Installation" section, below, to check your in
 
 ## Manual Installation of Goblin Weaver
 
+1. Make sure that the Neo4j database containing the graph is running.
+2. Download the Goblin Weaver jar [here](https://github.com/Goblin-Ecosystem/goblinWeaver/releases)
+3. Open a terminal and run the following command (If needed, update the Neo4j user, password and uri):
+```sh
+java -Dneo4jUri="bolt://localhost:7687/" -Dneo4jUser="neo4j" -Dneo4jPassword="Password1" -jar goblinWeaver-2.1.0.jar
+```
+
+The program will first download the osv.dev dataset and create a folder called "osvData", it's takes approximately 3m30s.
+For other runs, **if you don't want to update the CVE data**, you can add the "noUpdate" argument on the java -jar command like this:
+```sh
+java -Dneo4jUri="bolt://localhost:7687/" -Dneo4jUser="neo4j" -Dneo4jPassword="Password1" -jar goblinWeaver-2.1.0.jar noUpdate
+```
+
 ## Test of the Installation
 
+### Neo4j dataset
+To verify the Neo4j dataset works, open a terminal and run the following command:
+
+**Important:** If needed, update the Neo4j user, password and uri.
+```sh
+curl -H "Content-Type: application/json" -X POST \
+     -u neo4j:Password1 \
+     -d '{"statements": [{"statement": "MATCH (n) RETURN count(n)"}]}' \
+     http://localhost:7474/db/neo4j/tx/commit
+```
+
+If it works, you should get a response like this
+```sh
+{"results":[{"columns":["count(n)"],"data":[{"row":[14077982],"meta":[null]}]}],"errors":[]}%
+```
+
+### Weaver
+If the Weaver has launched without displaying an error, it is ready for use.
+The Swagger documentation should therefore be available under this link:
+[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
