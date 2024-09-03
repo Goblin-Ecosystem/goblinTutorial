@@ -58,7 +58,22 @@ Then, proceed to the "Test of the Installation" section, below, to check your in
     
     b. Server application
 
-     - to appear
+    - Stop the database if it's running:
+     ```sh
+     sudo systemctl stop neo4j
+     ```
+    - Load the dump:
+     ```sh
+     sudo -u neo4j neo4j-admin load --from=/path/to/dump.dump --database=neo4j --force
+     ```
+    - Start neo4j:
+     ```sh
+     sudo systemctl stop neo4j
+     ```
+    - To access the database, issue the command:
+    ```sh
+     cypher-shell -u neo4j -p your_password
+     ```
 
 ## Manual Installation of Goblin Weaver
 
