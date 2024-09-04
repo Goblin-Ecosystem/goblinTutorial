@@ -39,7 +39,7 @@ Then, proceed to the "Test of the Installation" section, below, to check your in
 
     **Important:** if you are using the Desktop application you will be able to select the DBMS version when importing the database dump. If you are using the server application then you **must** ensure that you are installing version 4.x.
 
-2. download the database dump from [here](https://doi.org/10.5281/zenodo.11104819)
+2. download the database dump from [here](https://doi.org/10.5281/zenodo.13683940)
 
    We release newer versions from time to time. See the versions list there.
 

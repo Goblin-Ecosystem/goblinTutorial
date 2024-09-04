@@ -3,7 +3,7 @@ The dependency graph database is composed of two node types (for libraries and f
 
 ![](./img/Goblin_Neo4J_Dependency_Graph.png "Graph structure")
 
-The latest version of our dataset, dated April 12th, 2024, contains 14,077,982 nodes (625,472 libraries and 13,452,510 releases) and 123,652,903 edges (110,200,393 dependencies and 13,452,510 versioning edges).
+The latest version of our dataset, dated August 30th, 2024, contains 15,117,217 nodes (658,078 libraries and 14,459,139 releases) and 134,119,545 edges (119,660,406 dependencies and 14,459,139 versioning edges).
 
 ## Neo4j Cypher querying
 
