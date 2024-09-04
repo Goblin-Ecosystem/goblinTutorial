@@ -84,7 +84,7 @@ Then, proceed to the "Test of the Installation" section, below, to check your in
 java -Dneo4jUri="bolt://localhost:7687/" -Dneo4jUser="neo4j" -Dneo4jPassword="Password1" -jar goblinWeaver-2.1.0.jar
 ```
 
-The program will first download the osv.dev dataset and create a folder called "osvData", it's takes approximately 3m30s.
+The program will first download the osv.dev dataset and create a folder called "osvData", it's takes approximately 3m.
 For other runs, **if you don't want to update the CVE data**, you can add the "noUpdate" argument on the java -jar command like this:
 ```sh
 java -Dneo4jUri="bolt://localhost:7687/" -Dneo4jUser="neo4j" -Dneo4jPassword="Password1" -jar goblinWeaver-2.1.0.jar noUpdate
