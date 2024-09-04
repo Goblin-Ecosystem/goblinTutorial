@@ -1,4 +1,6 @@
 # Weaver API
+The Weaver source code is available on [GitHub](https://github.com/Goblin-Ecosystem/goblinWeaver)
+
 The Goblin Weaver REST API is available as an alternative for direct access to the database using the Cypher language and for on-demand enrichment of the dependency graph with new information. A memoization principle is available to avoid re-computing enrichments, as soon as the base graph is not re-computed or incremented. For this, new kinds of nodes (type AddedValue) and edges (type addedValues from an Artifact or Release node to an AddedValue node) are used in the graph database. One should be careful, as the graph is large, calculating metrics (especially aggregate ones) for the whole graph can be time-consuming.
 
 ## Added values
