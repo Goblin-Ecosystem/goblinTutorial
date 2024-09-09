@@ -1,11 +1,13 @@
 # Neo4j database
-Database dumps are available on [Zenodo](https://doi.org/10.5281/zenodo.13683940)
+Database dumps are available on [Zenodo](https://doi.org/10.5281/zenodo.13734581)
 
 The dependency graph database is composed of two node types (for libraries and for their releases) and two edge types (from releases to their dependencies and from libraries to their releases). The nodes for libraries (type Artifact) contain the Maven id (g.a) information. The nodes for releases (type Release) contain the Maven id (g.a.v), the release timestamp, and the version information. The edges for dependencies (type dependency) are from Release nodes to Artifact nodes and contain target version (which can be a range) and scope (compile, test, etc). The edges for versioning (type relationship_AR) edges are from Artifact nodes to Release nodes.
 
 ![](./img/Goblin_Neo4J_Dependency_Graph.png "Graph structure")
 
 The latest version of our dataset, dated August 30th, 2024, contains 15,117,217 nodes (658,078 libraries and 14,459,139 releases) and 134,119,545 edges (119,660,406 dependencies and 14,459,139 versioning edges).
+
+We also provide a second version of this dataset enriched with the Weaver metrics, which has the effect of creating new “AddedValue” nodes in the database containing the metrics (CVE (dated September 4, 2024), freshness, popularity and speed). This adds 44,035,495 new nodes.
 
 ## Neo4j Cypher querying
 
@@ -14,7 +16,7 @@ Cypher is Neo4j’s declarative query language.
 
 ### Get a Release Node
 ```cypher
-MATCH (r:Release) WHERE r.id='org.jgrapht:jgrapht-core:1.5.2' return r
+MATCH (r:Release) WHERE r.id='org.jgrapht:jgrapht-core:1.5.2' RETURN r
 ```
 
 ### Get all Library versions
@@ -59,6 +61,12 @@ The following query therefore does not take into account the resolution of this 
 MATCH (r:Release)-[d:dependency]->(a:Artifact)
 WHERE a.id = 'org.jgrapht:jgrapht-core' AND d.targetVersion = '1.5.2'
 RETURN r, d, a
+```
+
+### Metrics-enriched database: get specific release CVE
+This query works on the dump enriched with metrics; here we are simply looking for the CVEs of a specific release.
+```cypher
+MATCH (r:Release)-[a:addedValues]->(v:AddedValue) WHERE r.id='org.apache.logging.log4j:log4j-core:2.17.0' AND v.type='CVE' RETURN v.value
 ```
 
 ## Neo4j Programmatic querying
