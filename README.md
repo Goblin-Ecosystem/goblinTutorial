@@ -1,5 +1,11 @@
 # goblinTutorial
-a tutorial on how to use the datasets and tools from the Goblin ecosystem
+A tutorial on how to use the datasets and tools from the Goblin ecosystem.
+
+The Goblin framework (see Figure Below) is organized around a **Neo4J database** of the whole Maven Central dependency graph.
+This database can be created and updated incrementally using **Goblin Miner**.
+The database can be queried directly using Cypher (the Neo4j query language) or through the **Goblin Weaver** tool.
+
+![Goblin framework](./img/architecture.jpg "Goblin framework")
 
 We give here some elements on the use of the Neo4J databases and the Weaver and Miner tools.
 
