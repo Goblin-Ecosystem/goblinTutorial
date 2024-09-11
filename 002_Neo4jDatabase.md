@@ -10,9 +10,10 @@ The latest version of our dataset, dated August 30th, 2024, contains 15,117,217 
 We also provide a second version of this dataset enriched with the Weaver metrics, which has the effect of creating new “AddedValue” nodes in the database containing the metrics (CVE (dated September 4, 2024), freshness, popularity and speed). This adds 44,035,495 new nodes.
 
 ## Neo4j Cypher querying
+Cypher is Neo4j’s declarative query language, more information [here](https://neo4j.com/docs/cypher-manual/current/queries/basic/).
 
 Here, we will presents basic examples of Cypher queries on the Neo4j Maven Central dependency graph.
-Cypher is Neo4j’s declarative query language.
+
 
 ### Get a Release Node
 ```cypher
