@@ -14,6 +14,23 @@ Currently, the weaver can compute the following added values:
 - POPULARITY_1_YEAR_AGGREGATED: Aggregate release and dependencies (with transitivity) POPULARITY_1_YEAR.
 - SPEED: Corresponds to the average number of releases per day of an artifact. More information [here](https://benevol2022.github.io/papers/DamienJaime.pdf).
 
+The page [005_AddedValues.md](005_AddedValues.md) give more information about the deleting and adding added values.
+
+## Run the Weaver
+## Manual Installation of Goblin Weaver
+
+1. Make sure that the Neo4j database containing the graph is running.
+2. Open a terminal and run the following command (If needed, update the Neo4j user, password and uri):
+```sh
+java -Dneo4jUri="bolt://localhost:7687/" -Dneo4jUser="neo4j" -Dneo4jPassword="Password1" -jar goblinWeaver-2.1.0.jar
+```
+
+The program will first download the osv.dev dataset and create a folder called "osvData", it's takes approximately 3m.
+For other runs, **if you don't want to update the CVE data**, you can add the "noUpdate" argument on the java -jar command like this:
+```sh
+java -Dneo4jUri="bolt://localhost:7687/" -Dneo4jUser="neo4j" -Dneo4jPassword="Password1" -jar goblinWeaver-2.1.0.jar noUpdate
+```
+
 ## Use the Weaver
 Pre-designed requests are available, but you can also send your own Cypher requests directly to the API.
 You can add to the body query for the API a list of Added values, and it will enrich the result for you.
