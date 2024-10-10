@@ -4,17 +4,31 @@ The Weaver source code is available on [GitHub](https://github.com/Goblin-Ecosys
 The Goblin Weaver REST API is available as an alternative for direct access to the database using the Cypher language and for on-demand enrichment of the dependency graph with new information. A memoization principle is available to avoid re-computing enrichments, as soon as the base graph is not re-computed or incremented. For this, new kinds of nodes (type AddedValue) and edges (type addedValues from an Artifact or Release node to an AddedValue node) are used in the graph database. One should be careful, as the graph is large, calculating metrics (especially aggregate ones) for the whole graph can be time-consuming.
 
 ## Added values
+Added values are assigned to a certain type of node (Artifact or Release).
+The page [005_AddedValues.md](005_AddedValues.md) give more information about the deleting and adding added values.
 Currently, the weaver can compute the following added values:
 
-- CVE: We use the [osv.dev](https://osv.dev/) dataset to get CVEs information.
-- CVE_AGGREGATED: Aggregate release and dependencies (with transitivity) CVE.
-- FRESHNESS: Corresponds, for a specific release, to the number of more recent releases available and to the time elapsed in milliseconds between the specific release and the most recent release.
-- FRESHNESS_AGGREGATED: Aggregate release and dependencies (with transitivity) freshness.
-- POPULARITY_1_YEAR: Corresponds, for a specific release, the number of version released within a maximum of one year after the current graph date using the specified release.
-- POPULARITY_1_YEAR_AGGREGATED: Aggregate release and dependencies (with transitivity) POPULARITY_1_YEAR.
-- SPEED: Corresponds to the average number of releases per day of an artifact. More information [here](https://benevol2022.github.io/papers/DamienJaime.pdf).
+### Release nodes added values
+The Release added values can be computed either locally (*e.g.*, the CVEs of a release) or aggregated (*e.g.*, the CVEs of a release and of all its direct and indirect dependencies).
+To use the aggregated value of a metric, add "_AGGREGATE" after the metric name.
+For example, to the the aggegated value of the "CVE" metric, use "CVE_AGGREGATE".
 
-The page [005_AddedValues.md](005_AddedValues.md) give more information about the deleting and adding added values.
+#### CVE
+[Common Vulnerabilities and Exposures (CVE)](https://cve.mitre.org/), is a dictionary of public information on security vulnerabilities.
+We use the [osv.dev](https://osv.dev/) dataset to get CVEs information.
+Our added value contains for each CVE its name, cwe (type of vulnerability) and severity (low, moderate, high, critical).
+
+#### FRESHNESS
+Corresponds, for a specific release, to the number of more recent releases available and to the time elapsed in milliseconds between the specific release and the most recent release.
+More information about freshness [here](https://ieeexplore.ieee.org/abstract/document/7202955).
+
+#### POPULARITY_1_YEAR
+To compute the popularity of a Release, we compute the number of dependants of the version of the library over a one year window (back from the date of the dependency graph).
+There are many ways to calculate the popularity of a release, and you can extend the Weaver to create your own, or to modify the one-year window we've defined.
+
+### Artifact nodes added values
+#### SPEED
+Corresponds to the average number of releases per day of an artifact. more information in our [benevol 2022 paper](https://hal.science/hal-03725099/document).
 
 ## Run the Weaver
 ## Manual Installation of Goblin Weaver
